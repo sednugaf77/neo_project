@@ -1,0 +1,86 @@
+/* ====== Variáveis de tema ====== */
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --muted: #6b7280;
+  --primary: #0ea5e9; /* azul */
+  --primary-contrast: #fff;
+  --card: #f8fafc;
+  --border: #e5e7eb;
+}
+
+html[data-theme="dark"] {
+  --bg: #0b1220;
+  --text: #e5e7eb;
+  --muted: #9aa0a6;
+  --primary: #38bdf8;
+  --primary-contrast: #0b1220;
+  --card: #101827;
+  --border: #1f2937;
+}
+
+/* ====== Reset básico ====== */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", sans-serif; background: var(--bg); color: var(--text); }
+
+/* ====== Header ====== */
+.app-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 10; }
+.app-header h1 { margin: 0; font-size: 1.25rem; }
+.app-header .sub { color: var(--muted); font-weight: 500; }
+.header-actions { display: flex; gap: 8px; align-items: center; }
+.theme-toggle { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; user-select: none; }
+.theme-toggle input { display: none; }
+
+/* ====== Layout principal ====== */
+.app { display: grid; grid-template-columns: 320px 1fr; min-height: calc(100vh - 70px); }
+.sidebar { border-right: 1px solid var(--border); padding: 16px; display: flex; flex-direction: column; gap: 16px; }
+.content { padding: 16px; }
+
+/* ====== Busca & categorias ====== */
+.search-box input { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text); }
+.categories { display: grid; gap: 8px; }
+.category-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); cursor: pointer; }
+.category-item.active { border-color: var(--primary); box-shadow: 0 0 0 2px color-mix(in oklab, var(--primary) 40%, transparent); }
+.category-item .name { font-weight: 600; }
+.category-item .count { color: var(--muted); }
+
+/* ====== Variáveis ====== */
+.vars h2 { margin: 4px 0 8px; font-size: 1rem; }
+.vars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.vars-grid label { display: grid; gap: 4px; font-size: .85rem; }
+.vars-grid input { padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text); }
+
+/* ====== Emoji bar ====== */
+.emoji-bar { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.emoji-bar .emoji { background: var(--card); border: 1px solid var(--border); padding: 6px 8px; border-radius: 8px; cursor: pointer; }
+
+/* ====== Cards ====== */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
+.card { border: 1px solid var(--border); border-radius: 10px; background: var(--card); display: grid; gap: 8px; padding: 12px; }
+.card h3 { margin: 0; font-size: 1rem; display: flex; align-items: center; gap: 6px; }
+.card pre { margin: 0; white-space: pre-wrap; word-wrap: break-word; font-family: inherit; }
+.card .actions { display: flex; gap: 8px; justify-content: flex-end; }
+.card .badge { color: var(--muted); font-size: .8rem; }
+.card .favorite { background: none; border: none; cursor: pointer; font-size: 1.1rem; }
+.card .favorite.active { color: #fbbf24; }
+
+/* ====== Composer ====== */
+.composer { margin-top: 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); padding: 12px; }
+.composer h2 { margin-top: 0; font-size: 1rem; }
+.composer textarea { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); }
+.composer-actions { display: flex; gap: 8px; justify-content: flex-end; }
+
+/* ====== Buttons ====== */
+button { padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; }
+button.primary { background: var(--primary); color: var(--primary-contrast); border-color: var(--primary); }
+button.ghost { background: transparent; color: var(--text); }
+button.copy { background: var(--primary); color: var(--primary-contrast); border-color: var(--primary); }
+
+/* ====== Footer ====== */
+.app-footer { border-top: 1px solid var(--border); padding: 10px 16px; color: var(--muted); }
+
+/* ====== Responsivo ====== */
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar { border-right: none; border-bottom: 1px solid var(--border); }
+}
