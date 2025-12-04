@@ -6,21 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Template de Atendimento Copa Energia</title>
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
 <body>
-    <header class="app-header">
 
-    </header>
+    <div id="root"></div>
 
-    <main class="app-main">
 
-    </main>
+    <script type="text/babel">
+        const { useState } = React;
 
-    <footer class="app-footer">
+        function App() {
+            const [mensagem, setMensagem] = useState('React está funcionando!')
 
-    </footer>
-
+            return (
+                <div>
+                    <h1>{mensagem}</h1>
+                    <button onClick={() => setMensagem('voce clicou no botao!')}
+                    ></button>
+                </div>
+            )
+        }
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Teste React</title>
+    <!-- React e ReactDOM (modo desenvolvimento) -->
+    https://unpkg.com/react@18/umd/react.development.js</script>
+    https://unpkg.com/react-dom@18/umd/react-dom.development.js</script>
+    <!-- Babel para interpretar JSX no navegador -->
+    <script src="https://unpkg.com/@babel/standin.js</script>
+</head>
+<body>
+  <div id=" root"></div >
+
+        <!-- Nosso código React com JSX -->
+        <script type="text/babel">
+    // Importa useState do React
+            const {useState} = React;
+
+            // Componente simples
+            function App() {
+      const [mensagem, setMensagem] = useState('React está funcionando! 🚀');
+
+            return (
+            <div style={{ fontFamily: 'Arial', padding: '20px' }}>
+                <h1>{mensagem}</h1>
+                <button
+                    style={{
+                        padding: '10px 20px',
+                        backgroundColor: '#2563eb',
+                        color: '#fff',
+                        border: 'none',
+                        borderRadius: '6px',
+                        cursor: 'pointer'
+                    }}
+                    onClick={() => setMensagem('Você clicou no botão! ✅')}
+                >
+                    Clique aqui
+                </button>
+            </div>
+            );
+    }
+
+            // Renderiza o componente App dentro da div #root
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            root.render(<App />);
+</script>
+    </body>
+
+</html>
