@@ -10,6 +10,26 @@
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --text-color: #000000;
+            --header-bg: #f4f4f4;
+        }
+
+        html[data-theme='dark'] {
+            --bg-primary: #000000;
+            --text-color: #ffffff;
+            --header-bg: #333333;
+
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-color);
+        }
+    </style>
 </head>
 
 <body>
@@ -66,7 +86,7 @@
                             <li>
                                 <SearchBox />
                             </li>
-                            <li>
+                            <li><span></span>
                                 <ToggleThemeBtn
                                     isDarkMode={isDarkMode}
                                     toggleTheme={toggleTheme}
@@ -86,6 +106,13 @@
             const [isDarkMode, setDarkMode] = useState(false);
             const toggleTheme = () => setDarkMode(!isDarkMode)
 
+            React.useEffect(() => {
+                const themeString = isDarkMode ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', themeString);
+            }, [isDarkMode]
+
+            )
+
             return (
                 <div className="app">
                     <Header
@@ -103,4 +130,5 @@
         root.render(<App />);
     </script>
 </body>
+
 </html>
