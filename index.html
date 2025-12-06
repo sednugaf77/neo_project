@@ -16,6 +16,10 @@
             --bg-primary: #ffffff;
             --text-color: #000000;
             --header-bg: #f4f4f4;
+
+            margin: 0;
+            padding: 0;
+            border: 0;
         }
 
         html[data-theme='dark'] {
@@ -28,6 +32,13 @@
         body {
             background-color: var(--bg-primary);
             color: var(--text-color);
+        }
+
+        .app-header-nav ul {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            width: 100%;
         }
     </style>
 </head>
