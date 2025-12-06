@@ -13,27 +13,94 @@
 </head>
 
 <body>
-
     <div id="root"></div>
-
 
     <script type="text/babel">
         const { useState } = React;
 
-        function App() {
-            const [mensagem, setMensagem] = useState('React está funcionando!')
-
+        function ToggleMenuBtn({ isSidebarOpen, toggleSidebar }) {
             return (
-                <div>
-                    <h1>{mensagem}</h1>
-                    <button onClick={() => setMensagem('voce clicou no botao!')}
-                    ></button>
+                <button
+                    onClick={toggleSidebar}
+                    className="menu-toggle-button"
+                >
+                    {isSidebarOpen ? '✕ Fechar Menu' : '☰ Abrir Menu'}
+                </button>
+            )
+        }
+
+        function SearchBox() {
+            return (
+                <div className="SearchBox">
+                    <input
+                        id="searchInput"
+                        type="text"
+                        placeholder="Pesquisar por palavra chave"
+                        aria-label="Pesquisar scripts"
+                    />
                 </div>
             )
         }
+
+        function ToggleThemeBtn({ isDarkMode, toggleTheme }) {
+            return (
+                <button
+                    className="theme-toggle"
+                    title="Alternar Tema"
+                    onClick={toggleTheme}
+                >
+                    <span>{!isDarkMode ? '🌞' : '🌙'}</span>
+                </button>
+            )
+        }
+
+        function Header({ isSidebarOpen, toggleSidebar, isDarkMode, toggleTheme }) {
+            return (
+                <div className="app-header">
+                    <div class="app-header-nav">
+                        <ul>
+                            <li><ToggleMenuBtn
+                                isSidebarOpen={isSidebarOpen}
+                                toggleSidebar={toggleSidebar}
+                            /></li>
+                            <li>
+                                <SearchBox />
+                            </li>
+                            <li>
+                                <ToggleThemeBtn
+                                    isDarkMode={isDarkMode}
+                                    toggleTheme={toggleTheme}
+                                />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            )
+        }
+
+        function App() {
+            const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+            const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
+            const [isDarkMode, setDarkMode] = useState(false);
+            const toggleTheme = () => setDarkMode(!isDarkMode)
+
+            return (
+                <div className="app">
+                    <Header
+                        isSidebarOpen={isSidebarOpen}
+                        toggleSidebar={toggleSidebar}
+                        isDarkMode={isDarkMode}
+                        toggleTheme={toggleTheme}
+
+                    />
+                </div>
+            )
+        }
+
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
 </body>
-
 </html>
