@@ -7,24 +7,29 @@
     <title>Template de Atendimento Copa Energia</title>
     <link rel="stylesheet" href="style.css">
 
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
-        :root {
-            --bg-primary: #ffffff;
-            --text-color: #000000;
-            --header-bg: #f4f4f4;
-
+        * {
             margin: 0;
             padding: 0;
-            border: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --text-color: #0f1724;
+            --header-bg: #f4f4f4;
+
+
         }
 
         html[data-theme='dark'] {
-            --bg-primary: #000000;
-            --text-color: #ffffff;
+            --bg-primary: #0b0f14;
+            --text-color: #e6eef8;
             --header-bg: #333333;
 
         }
@@ -34,12 +39,32 @@
             color: var(--text-color);
         }
 
+        .app-header {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .app-header-nav {
+            gap: 0.5rem;
+        }
+
         .app-header-nav ul {
             display: flex;
+            justify-content: space-between;
             align-items: center;
             list-style: none;
             width: 100%;
         }
+
+
+        .sidebar {
+            background-color: aqua;
+            max-width: 123px;
+            height: 333px;
+        }
+
+        @media (min-width: 768px) {}
     </style>
 </head>
 
@@ -48,6 +73,24 @@
 
     <script type="text/babel">
         const { useState } = React;
+        {/*
+
+        const fields = [
+            { id: "nome_atendente", label: "Nome do atendente", placeholder: "Nome" },
+            { id: "nome_cliente", label: "Nome do cliente", placeholder: "Nome do cliente" },
+            { id: "protocolo", label: "Protocolo", placeholder: "Ex.: 12345" },
+            { id: "numero_pedido", label: "Nº do pedido", placeholder: "Ex.: 98765" },
+            { id: "previsao_entrega", label: "Previsão de entrega", placeholder: "Ex.: hoje, 14h–18h" },
+            { id: "cep", label: "CEP", placeholder: "Ex.: 12345-678" },
+            { id: "cidade", label: "Cidade", placeholder: "Ex.: Londrina" },
+            { id: "data_agendamento", label: "Data de agendamento", placeholder: "AAAA-MM-DD" },
+            { id: "quantidade_tanque", label: "Qtd. de tanque", placeholder: "Ex.: 2" },
+            { id: "porcentagens", label: "Porcentagens", placeholder: "Ex.: 30% / 60%" },
+        ];
+
+        */}
+
+
 
         function ToggleMenuBtn({ isSidebarOpen, toggleSidebar }) {
             return (
@@ -88,25 +131,55 @@
         function Header({ isSidebarOpen, toggleSidebar, isDarkMode, toggleTheme }) {
             return (
                 <div className="app-header">
-                    <div class="app-header-nav">
-                        <ul>
-                            <li><ToggleMenuBtn
-                                isSidebarOpen={isSidebarOpen}
-                                toggleSidebar={toggleSidebar}
-                            /></li>
-                            <li>
-                                <SearchBox />
-                            </li>
-                            <li><span></span>
-                                <ToggleThemeBtn
-                                    isDarkMode={isDarkMode}
-                                    toggleTheme={toggleTheme}
-                                />
-                            </li>
-                        </ul>
+                    <div className="app-header-nav">
+                        <div className="app-top-header">
+                            <ul>
+                                <li><ToggleMenuBtn
+                                    isSidebarOpen={isSidebarOpen}
+                                    toggleSidebar={toggleSidebar}
+                                /></li>
+                                <li>
+                                    <SearchBox />
+                                </li>
+                                <li><span></span>
+                                    <ToggleThemeBtn
+                                        isDarkMode={isDarkMode}
+                                        toggleTheme={toggleTheme}
+                                    />
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="app-bottom-header">
+                        </div>
                     </div>
                 </div>
+            )
+        }
 
+
+
+
+        function Sidebar({ query, setQuery, category, setCategory, vars, setVars }) {
+            return (
+
+
+
+
+                <aside className="sidebar">
+                    <h2>sidebar</h2>
+                    {/*            <SearchBox query={query} setQuery={setQuery} />  */}
+                    {/*      <CategoryNav category={category} setCategory={setCategory} /> */}
+                    {/*      <VarsForm vars={vars} setVars={setVars} /> */}
+                </aside>
+
+            )
+        }
+
+        function Content() {
+            return (
+                <section className="content">
+                    <h2>Content</h2>
+                </section>
             )
         }
 
@@ -131,8 +204,16 @@
                         toggleSidebar={toggleSidebar}
                         isDarkMode={isDarkMode}
                         toggleTheme={toggleTheme}
-
                     />
+
+                    <div classname="app-main">
+                        <div classname="app-sidebar">
+                            <Sidebar />
+                        </div>
+                        <div classname="app-content">
+                            <Content />
+                        </div>
+                    </div>
                 </div>
             )
         }
